@@ -1,6 +1,6 @@
 <template>
    <div>
-      <h2 class="sub-header">Add Hero</h2>
+      <h2 class="sub-header">Edit Hero</h2>
       <form>
          <div class="form-group">
          <label for="name">英雄名称</label>
@@ -9,8 +9,7 @@
          <div class="form-group">
          <label for="sex">英雄性别</label>
          <input type="text" class="form-control" id="sex" placeholder="sex" v-model="formData.gender">
-         </div>
-         
+         </div> 
          <button type="submit" @click.prevent="handleAdd" class="btn btn-success">Submit</button>
       </form>
    </div>
@@ -26,20 +25,6 @@ export default {
             gender: ''
          }
       }
-   },
-   methods: {
-      handleAdd() {
-         axios
-            .post('http://localhost:3000/heroes', this.formData)
-            .then((res) => {
-               if (res.status === 201) {
-                  this.$router.push({name: 'heros'})
-               }
-            })
-            .catch((err) => {
-               alert('添加失败');
-            })
-      }
    }
 }
 </script>
@@ -47,4 +32,3 @@ export default {
 <style>
 
 </style>
-
