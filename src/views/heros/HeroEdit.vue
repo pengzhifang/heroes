@@ -10,20 +10,49 @@
          <label for="sex">英雄性别</label>
          <input type="text" class="form-control" id="sex" placeholder="sex" v-model="formData.gender">
          </div> 
-         <button type="submit" @click.prevent="handleAdd" class="btn btn-success">Submit</button>
+         <button type="submit" @click.prevent="handleEdit" class="btn btn-success">Submit</button>
       </form>
    </div>
 </template>
 
 <script>
-import axios from 'axios';
 export default {
    data() {
       return {
          formData: {
             name: '',
             gender: ''
-         }
+         },
+         heroId: -1
+      }
+   },
+   created() {
+      this.heroId = this.$route.params.id;
+      this.loadData();
+   },
+   methods: {
+      loadData() {
+         this.$http
+            .get(`heroes/${this.heroId}`)
+            .then((res) => {
+               if (res.status === 200) {
+                  this.formData = res.data;
+               }
+            })
+            .catch((err) => {
+               console.log(err);;
+            })
+      },
+      handleEdit() {
+         this.$http
+            .put(`heroes/${this.heroId}`, this.formData)
+            .then((res) => {
+               if (res.status === 200) {
+                  this.$router.push({name: 'heros'});
+               } else {
+                  alert('修改失败');
+               }
+            })
       }
    }
 }

@@ -10,7 +10,8 @@ import HeroEdit from '../views/heros/HeroEdit.vue';
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-   linkExactActiveClass: 'active',
+   // linkExactActiveClass: 'active',
+   linkActiveClass: 'active',
    routes: [
       {name: 'home', path: '/', redirect: '/heros'},
       {name: 'heros', path: '/heros', component: HeroList},
