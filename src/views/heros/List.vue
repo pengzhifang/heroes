@@ -14,13 +14,14 @@
             </thead>
             <tbody>
                <tr :key="item.id" v-for="(item, index) in list">
-                  <td>{{ index }}</td>
+                  <td>{{ index + 1 }}</td>
                   <td>{{ item.name }}</td>
                   <td>{{ item.gender }}</td>
                   <td>
                      <a href="edit.html">edit</a>
                      &nbsp;&nbsp;
-                     <a href="javascript:window.confirm('Are you sure?')">delete</a>
+                     <!-- <a href="javascript:window.confirm('Are you sure?')">delete</a> -->
+                     <a href="#" @click.prevent="handleDelete(item.id)">delete</a>
                   </td>
                </tr>
                
@@ -53,6 +54,19 @@ export default {
             .catch((err) => {
                console.log(err);
             })
+      },
+      handleDelete(id) {
+			if (!confirm('您确定删除吗')) {
+				return;
+			}
+         axios
+            .delete(`http://localhost:3000/heroes/${id}`)
+            .then((res) => {
+					this.loadData();
+				})
+				.catch((err) => {
+					console.log(err);
+				})
       }
    }
 }
