@@ -6,12 +6,12 @@ import router from './routes/router'
 //导入css
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import './assets/css/index.css';
+import MyAxios from './plugins/myAxios';
 
-import axios from 'axios';
-
-Vue.prototype.$http = axios;
-
-axios.defaults.baseURL = 'http://localhost:3000/';
+Vue.use(MyAxios)
+// import axios from 'axios';
+// Vue.prototype.$http = axios;
+// axios.defaults.baseURL = 'http://localhost:3000/';
 
 new Vue({
   el: '#app',
