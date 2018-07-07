@@ -8,6 +8,7 @@ import EquipList from '../views/equips/List.vue';
 Vue.use(VueRouter);
 
 const router = new VueRouter({
+   linkExactActiveClass: 'active',
    routes: [
       {name: 'heros', path: '/heros', component: HeroList},
       {name: 'weapons', path: '/weapons', component: WeaponList},
