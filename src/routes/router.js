@@ -10,6 +10,7 @@ Vue.use(VueRouter);
 const router = new VueRouter({
    linkExactActiveClass: 'active',
    routes: [
+      {name: 'home', path: '/', redirect: '/heros'},
       {name: 'heros', path: '/heros', component: HeroList},
       {name: 'weapons', path: '/weapons', component: WeaponList},
       {name: 'equips', path: '/equips', component: EquipList}
